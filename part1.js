@@ -40,6 +40,8 @@ expenses.forEach(({paidBy, amount}) => {
 console.log("Q1 - Total paid by each member:");
 console.log(totalPaid(expenses, members));
 
+//Question 2
+
 function splitEvenly(amount, parts){
   //leftover paisa is given to first n people in array
 
@@ -69,4 +71,25 @@ let test2 = splitEvenly(90, 3);
 console.log("Ouput:", test2);
 console.log("Proof sum:", test2.reduce((acc, val) => acc + val, 0).toFixed(2));
 
+// Question 3
 
+function totalOwed(expenses, members){
+  let output = {};
+
+  members.forEach(member => {
+    output[member] = 0;
+  });
+
+  expenses.forEach(({amount, participants}) => {
+    let share = amount / participants.length;
+
+    participants.forEach(participant => {
+      output[participant] += share;
+    });
+  });
+
+  return output;
+}
+
+console.log("Total each member owes:");
+console.log(totalOwed(expenses, members));
