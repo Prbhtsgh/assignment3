@@ -1,0 +1,220 @@
+<html>
+	<head>
+		<title>Hostel expense splitter</title>
+		<script src = "https://cdn.tailwindcss.com"></script>
+	</head>
+	<body>
+		<div class="grid grid-cols-12 gap-6 p-6 h-screen">
+			<div id = "left" class = "col-span-3">
+				<h2 class = "font-bold text-lg mb-4">Members & Balances</h2>
+				<div class = "mb-6 flex gap-2">
+					<input type = "text" id = "newMemberName" placeholder = "New member name" class = "flex-1 border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-500 text-sm">
+					<button id = "addMemberBtn" class = "bg-blue-600 text-white font-bold px-4 rounded-lg hover:bg-blue-700 transition text-sm">Add</button>
+				</div>
+				<div id = "membersList" class = "space-y-4">
+				</div>
+			</div>
+			<div id = "middle" class = "col-span-6">
+				<h2 class = "font-bold text-lg mb-4">Expenses & Actions</h2>
+				<div class = "bg-white p-6 rounded-xl shadow-sm mb-6">
+					<h3 class = "font-bold mb-4">Add New Expense</h3>
+					<div class = "mb-4">
+						<label class = "block text-sm font-semibold text-gray-700 mb-1">Description
+							<input type = "text" placeholder = "What was this for?" class = "w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"> 
+						</label>
+					</div>
+					<div class = "flex gap-4 mb-4">
+						<div id = "amount" class = "flex-1">
+							<label class = "block text-sm font-semibold text-gray-700 mb-1">Amount
+							</label>
+							<input type = "number" placeholder = "$" class = "w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+						</div>
+						<div id = "payer" class = "flex-1">
+							<label class = "block text-sm font-semibold text-gray-700 mb-1">Payer
+							</label>
+							<select class = "w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-white">
+								<option value = "" disabled selected>Select</option>
+								<option value = "rahul">Rahul</option>
+								<option value = "aisha">Aisha</option>
+								<option value = "kabir">Kabir</option>
+								<option value = "divya">Divya</option>
+							</select>
+						</div>
+					</div>
+					<div class = "flex items-center mb-6">
+						<input type = "checkbox" id = "split" class = "mr-2 accent-emerald-600" checked>
+						<label for = "split" class = "text-sm text-gray-700">Split Among all members</label>
+					</div>
+					<div>
+						<button class = "w-full bg-emerald-600 text-white font-bold py-2 rounded-lg hover:bg-emerald-700 transition">
+							Add Expense
+						</button>
+					</div>
+				</div>
+				<h3 class = "font-bold text-lg mt-8 mb-4">Recent Expenses</h3>
+				<div class = "space-y-3">
+					<div class = "bg-white p-4 rounded-xl shadow-sm flex justify-between items-center">
+						<div class = "flex items-center gap-3 min-w-0">
+							<div class = "bg-blue-100 text-blue-600 font-bold w-10 h-10 rounded-full flex items-center justify-center shrink-0">
+								R
+							</div>
+							<div class = "min-w-0">
+								<p class = "font-bold text-sm">Dinner</p>
+								<p class = "text-xs text-gray-500">Paid by Rahul</p>
+							</div>
+						</div>
+						<p class = "font-bold text-gray-800">$1,200</p>
+					</div>
+					<div class = "bg-white p-4 rounded-xl shadow-sm flex justify-between items-center">
+						<div class = "flex items-center gap-3 min-w-0">
+							<div class = "bg-amber-100 text-amber-600 font-bold w-10 h-10 rounded-full flex items-center justify-center shrink-0">
+								A
+							</div>
+							<div class = "min-w-0">
+								<p class = "font-bold text-sm truncate">Electricity Bill</p>
+								<p class = "text-xs text-gray-500 truncate">Paid by Aisha</p>
+							</div>
+						</div>
+						<p class = "font-bold text-gray-800 shrink-0 ml-4">$2,400</p>
+					</div>
+					<div class = "bg-white p-4 rounded-xl shadow-sm flex justify-between items-center">
+						<div class = "flex items-center gap-3 min-w-0">
+							<div class = "bg-purple-100 text-purple-600 font-bold w-10 h-10 rounded-full flex items-center justify-center shrink-0">
+								K
+							</div>
+							<div class = "min-w-0">
+								<p class = "font-bold text-sm truncate">Weekly Groceries</p>
+								<p class = "text-xs text-gray-500 truncate">Paid by Kabir</p>
+							</div>
+						</div>
+						<p class = "font-bold text-gray-800 shrink-0 ml-4">$1,850</p>
+					</div>
+				</div>
+			</div>
+			<div id = "right" class = "col-span-3">
+				<h2 class = "font-bold text-lg mb-4">Summary</h2>
+				<div class = "bg-white p-5 rounded-xl shadow-sm mb-4">
+					<h3 class = "font-bold text-gray-800 mb-3">Group Totals</h3>
+					<div class = "flex justify-between py-2 border-b border-gray-100 text-sm">
+						<span class = "text-gray-500">Total Spent</span>
+						<span class = "font-bold text-gray-800">$5,450</span>
+					</div>
+					<div class = "flex justify-between py-2 border-b border-gray-100 text-sm">
+						<span class = "text-gray-500">Total Members</span>
+						<span class = "font-bold text-gray-800">4</span>
+					</div>
+					<div class = "flex justify-between py-2 text-sm">
+						<span class = "text-gray-500">Avg / Person</span>
+						<span class = "font-bold text-emerald-600">$1,362.50</span>
+					</div>
+				</div>
+				<div class = "bg-white p-5 rounded-xl shadow-sm">
+					<h3 class = "font-bold text-gray-800 mb-2">Quick Actions</h3>
+					<p class = "text-xs text-gray-500 mb-4">Calculate optimized cash flows to settle all debts with minimum transactions</p>
+					<button class = "w-full bg-gray-900 text-white font-bold py-2 rounded-lg hover:bg-gray-800 transition">Settle up Balances</button>
+				</div>
+			</div>
+		</div>
+		<script>
+			// 1. One Source of Truth (Mandated by assignment)
+			const state = {
+    			members: [],
+		    	expenses: [],
+    			filter: { memberId: null, search: "" }
+			};
+
+// DOM Elements
+			const memberInput = document.getElementById('newMemberName');
+			const addMemberBtn = document.getElementById('addMemberBtn');
+			const membersList = document.getElementById('membersList');
+
+// 2. Add Member Logic
+			addMemberBtn.addEventListener('click', () => {
+	    		const rawName = memberInput.value;
+    			const name = rawName.trim();
+
+    // Validation: Reject empty or whitespace-only
+    			if (!name) {
+        		alert("Member name cannot be empty.");
+        		return;
+    			}
+
+    // Validation: Reject duplicates (ignoring case)
+    			const isDuplicate = state.members.some(m => m.name.toLowerCase() === name.toLowerCase());
+    			if (isDuplicate) {
+        		alert(`"${name}" is already a member.`);
+        		return;
+    			}
+
+    // Add to state
+    			state.members.push({
+        		id: Date.now().toString(), // Generate a simple unique ID
+        		name: name
+    			});
+
+    			memberInput.value = ""; // Clear the input field
+    			saveState(); 
+			});
+
+// 3. Render Members UI
+			function renderMembers() {
+    			if (!membersList) return; // Safety check
+    
+    			membersList.innerHTML = ""; // Clear existing UI
+
+    // Empty State Requirement
+    			if (state.members.length === 0) {
+        		membersList.innerHTML = `<p class="text-sm text-gray-500 italic mt-4">No members yet. Add someone above!</p>`;
+        		return;
+    			}
+
+    // Loop through state and draw cards
+    			state.members.forEach(member => {
+        		const balance = 0; // Defaulting to 0 for now
+        
+        		const isPositive = balance >= 0;
+        		const badgeClass = isPositive ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700";
+        		const badgeText = isPositive ? "STATUS" : "OWES GROUP"; 
+        		const textClass = isPositive ? "text-green-500" : "text-red-500";
+        		const subtitleText = isPositive ? "owed to" : "owes group";
+
+        		const cardHTML = `
+            		<div class="bg-white p-4 rounded-xl shadow-sm mb-4">
+                	<div class="flex justify-between items-center mb-2">
+                    	<span>${member.name}</span>
+                    	<span class="${badgeClass} text-xs font-bold px-2 py-1 rounded-full">${badgeText}</span>
+                	</div>
+                	<p class="text-3xl font-bold ${textClass}">₹${Math.abs(balance).toFixed(2)}</p>
+                	<p class="text-xs text-gray-500 uppercase">${subtitleText}</p>
+            		</div>
+        		`;
+        		membersList.innerHTML += cardHTML;
+    			});
+		}
+
+// 4. State Management
+			function loadState() {
+    			const saved = localStorage.getItem("hostelState");
+    			if (saved) {
+        		const savedData = JSON.parse(saved);
+        		Object.assign(state, savedData); // Safely copy data into const state
+    		}
+	}
+
+			function saveState() {
+    			localStorage.setItem("hostelState", JSON.stringify(state));
+    			render(); 
+		}
+
+// 5. Main Render Loop
+			function render() {
+		    	console.log("Current State:", state);
+    			renderMembers();
+		}
+
+// Boot the application
+loadState();
+render();
+		</script>
+	</body>
+</html>
